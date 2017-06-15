@@ -1,12 +1,38 @@
-[gd_scene load_steps=2 format=1]
+[gd_scene load_steps=26 format=1]
 
 [ext_resource path="res://SceneCharacter.tscn" type="PackedScene" id=1]
+[ext_resource path="res://media/docwildp.png" type="Texture" id=2]
+[ext_resource path="res://media/docwildf.png" type="Texture" id=3]
+[ext_resource path="res://media/bernardp.png" type="Texture" id=4]
+[ext_resource path="res://media/bernardf.png" type="Texture" id=5]
+[ext_resource path="res://media/hikarip.png" type="Texture" id=6]
+[ext_resource path="res://media/hikarif.png" type="Texture" id=7]
+[ext_resource path="res://media/quaternionp.png" type="Texture" id=8]
+[ext_resource path="res://media/quaternionf.png" type="Texture" id=9]
+[ext_resource path="res://media/deadheadp.png" type="Texture" id=10]
+[ext_resource path="res://media/deadheadf.png" type="Texture" id=11]
+[ext_resource path="res://media/natip.png" type="Texture" id=12]
+[ext_resource path="res://media/natif.png" type="Texture" id=13]
+[ext_resource path="res://media/k9p.png" type="Texture" id=14]
+[ext_resource path="res://media/k9f.png" type="Texture" id=15]
+[ext_resource path="res://media/thecellp.png" type="Texture" id=16]
+[ext_resource path="res://media/thecellf.png" type="Texture" id=17]
+[ext_resource path="res://media/reaverp.png" type="Texture" id=18]
+[ext_resource path="res://media/reaverf.png" type="Texture" id=19]
+[ext_resource path="res://media/kthxbyep.png" type="Texture" id=20]
+[ext_resource path="res://media/kthxbyef.png" type="Texture" id=21]
+[ext_resource path="res://media/prophetp.png" type="Texture" id=22]
+[ext_resource path="res://media/prophetf.png" type="Texture" id=23]
+[ext_resource path="res://media/javalinp.png" type="Texture" id=24]
+[ext_resource path="res://media/javalinf.png" type="Texture" id=25]
 
 [node name="Characters" type="Node"]
 
 [node name="DocWild" parent="." instance=ExtResource( 1 )]
 
 name = "DocWild"
+portrait = ExtResource( 2 )
+fullbody = ExtResource( 3 )
 hp = 75
 primaryTypes = 1
 attackOneRange = 2
@@ -20,6 +46,8 @@ move = 1
 [node name="Bernard" parent="." instance=ExtResource( 1 )]
 
 name = "Bernard"
+portrait = ExtResource( 4 )
+fullbody = ExtResource( 5 )
 hp = 140
 primaryTypes = 1
 attackOneDmg = 5
@@ -33,6 +61,8 @@ move = 4
 [node name="Hikari" parent="." instance=ExtResource( 1 )]
 
 name = "Hikari"
+portrait = ExtResource( 6 )
+fullbody = ExtResource( 7 )
 hp = 80
 primaryTypes = 1
 attackOneDmg = 12
@@ -47,7 +77,8 @@ move = 1
 [node name="Quaternion" parent="." instance=ExtResource( 1 )]
 
 name = "Quaternion"
-hp = 100
+portrait = ExtResource( 8 )
+fullbody = ExtResource( 9 )
 primaryTypes = 16
 attackOneTypes = 16
 attackTwoRange = 0
@@ -59,6 +90,8 @@ move = 1
 [node name="DeadHead" parent="." instance=ExtResource( 1 )]
 
 name = "DeadHead"
+portrait = ExtResource( 10 )
+fullbody = ExtResource( 11 )
 hp = 120
 primaryTypes = 2
 attackOneDmg = 20
@@ -71,7 +104,8 @@ defenceTypes = 2
 [node name="Nati" parent="." instance=ExtResource( 1 )]
 
 name = "Nati"
-hp = 100
+portrait = ExtResource( 12 )
+fullbody = ExtResource( 13 )
 primaryTypes = 1
 attackOneDmg = 16
 attackOneTypes = 1
@@ -83,6 +117,8 @@ defenceTypes = 1
 [node name="Kay9" parent="." instance=ExtResource( 1 )]
 
 name = "Kay"
+portrait = ExtResource( 14 )
+fullbody = ExtResource( 15 )
 hp = 110
 primaryTypes = 8
 attackOneTypes = 8
@@ -95,6 +131,8 @@ move = 1
 [node name="TheCell" parent="." instance=ExtResource( 1 )]
 
 name = "TheCell"
+portrait = ExtResource( 16 )
+fullbody = ExtResource( 17 )
 hp = 150
 primaryTypes = 4
 attackOneDmg = 15
@@ -107,11 +145,13 @@ defenceTypes = 2
 [node name="Reaver" parent="." instance=ExtResource( 1 )]
 
 name = "Reaver"
+portrait = ExtResource( 18 )
+fullbody = ExtResource( 19 )
 hp = 130
-primaryTypes = 8
+primaryTypes = 12
 attackOneRange = 2
 attackOneDmg = 13
-attackOneTypes = 8
+attackOneTypes = 12
 attackTwoRange = 0
 attackTwoDmg = 0
 defence = 5
@@ -120,6 +160,8 @@ defenceTypes = 16
 [node name="KThxBye" parent="." instance=ExtResource( 1 )]
 
 name = "KThxBye"
+portrait = ExtResource( 20 )
+fullbody = ExtResource( 21 )
 hp = 80
 primaryTypes = 8
 attackOneRange = 2
@@ -134,6 +176,8 @@ move = 1
 [node name="TheProphet" parent="." instance=ExtResource( 1 )]
 
 name = "TheProphet"
+portrait = ExtResource( 22 )
+fullbody = ExtResource( 23 )
 hp = 66
 primaryTypes = 16
 attackOneRange = 3
@@ -147,7 +191,8 @@ move = 1
 [node name="Javalin" parent="." instance=ExtResource( 1 )]
 
 name = "Javalin"
-hp = 100
+portrait = ExtResource( 24 )
+fullbody = ExtResource( 25 )
 primaryTypes = 1
 attackOneDmg = 4
 attackOneTypes = 2
