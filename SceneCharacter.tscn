@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://Character.gd" type="Script" id=1]
+
+[node name="Character" type="Node"]
+
+script/script = ExtResource( 1 )
+name = "sample"
+description = ""
+backstory = ""
+portrait = null
+fullbody = null
+passive = NodePath("")
+ability1 = NodePath("")
+ability2 = null
+ability3 = null
+primaryTypes = 0
+attackOneRange = 1
+attackOneDmg = 10
+attackOneTypes = 0
+attackTwoRange = 1
+attackTwoDmg = 10
+attackTwoTypes = 0
+defence = 10
+defenceTypes = 0
+move = 2
+
+

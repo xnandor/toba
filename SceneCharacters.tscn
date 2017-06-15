@@ -1,0 +1,160 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://SceneCharacter.tscn" type="PackedScene" id=1]
+
+[node name="Characters" type="Node"]
+
+[node name="DocWild" parent="." instance=ExtResource( 1 )]
+
+name = "DocWild"
+hp = 75
+primaryTypes = 1
+attackOneRange = 2
+attackOneDmg = 7
+attackOneTypes = 1
+attackTwoRange = 0
+attackTwoDmg = 0
+defenceTypes = 4
+move = 1
+
+[node name="Bernard" parent="." instance=ExtResource( 1 )]
+
+name = "Bernard"
+hp = 140
+primaryTypes = 1
+attackOneDmg = 5
+attackOneTypes = 1
+attackTwoRange = 0
+attackTwoDmg = 0
+defence = 20
+defenceTypes = 4
+move = 4
+
+[node name="Hikari" parent="." instance=ExtResource( 1 )]
+
+name = "Hikari"
+hp = 80
+primaryTypes = 1
+attackOneDmg = 12
+attackOneTypes = 1
+attackTwoRange = 2
+attackTwoDmg = 6
+attackTwoTypes = 1
+defence = 5
+defenceTypes = 1
+move = 1
+
+[node name="Quaternion" parent="." instance=ExtResource( 1 )]
+
+name = "Quaternion"
+hp = 100
+primaryTypes = 16
+attackOneTypes = 16
+attackTwoRange = 0
+attackTwoDmg = 0
+defence = 15
+defenceTypes = 3
+move = 1
+
+[node name="DeadHead" parent="." instance=ExtResource( 1 )]
+
+name = "DeadHead"
+hp = 120
+primaryTypes = 2
+attackOneDmg = 20
+attackOneTypes = 2
+attackTwoRange = 0
+attackTwoDmg = 0
+defence = 20
+defenceTypes = 2
+
+[node name="Nati" parent="." instance=ExtResource( 1 )]
+
+name = "Nati"
+hp = 100
+primaryTypes = 1
+attackOneDmg = 16
+attackOneTypes = 1
+attackTwoRange = 0
+attackTwoDmg = 0
+defence = 6
+defenceTypes = 1
+
+[node name="Kay9" parent="." instance=ExtResource( 1 )]
+
+name = "Kay"
+hp = 110
+primaryTypes = 8
+attackOneTypes = 8
+attackTwoRange = 0
+attackTwoDmg = 0
+defence = 25
+defenceTypes = 1
+move = 1
+
+[node name="TheCell" parent="." instance=ExtResource( 1 )]
+
+name = "TheCell"
+hp = 150
+primaryTypes = 4
+attackOneDmg = 15
+attackOneTypes = 4
+attackTwoRange = 0
+attackTwoDmg = 0
+defence = 12
+defenceTypes = 2
+
+[node name="Reaver" parent="." instance=ExtResource( 1 )]
+
+name = "Reaver"
+hp = 130
+primaryTypes = 8
+attackOneRange = 2
+attackOneDmg = 13
+attackOneTypes = 8
+attackTwoRange = 0
+attackTwoDmg = 0
+defence = 5
+defenceTypes = 16
+
+[node name="KThxBye" parent="." instance=ExtResource( 1 )]
+
+name = "KThxBye"
+hp = 80
+primaryTypes = 8
+attackOneRange = 2
+attackOneDmg = 15
+attackOneTypes = 8
+attackTwoRange = 0
+attackTwoDmg = 0
+defence = 0
+defenceTypes = 8
+move = 1
+
+[node name="TheProphet" parent="." instance=ExtResource( 1 )]
+
+name = "TheProphet"
+hp = 66
+primaryTypes = 16
+attackOneRange = 3
+attackOneTypes = 16
+attackTwoRange = 0
+attackTwoDmg = 0
+defence = 25
+defenceTypes = 2
+move = 1
+
+[node name="Javalin" parent="." instance=ExtResource( 1 )]
+
+name = "Javalin"
+hp = 100
+primaryTypes = 1
+attackOneDmg = 4
+attackOneTypes = 2
+attackTwoRange = 3
+attackTwoTypes = 1
+defence = 15
+defenceTypes = 4
+move = 1
+
+
