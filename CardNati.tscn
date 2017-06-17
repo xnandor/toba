@@ -1,6 +1,6 @@
-[gd_scene load_steps=19 format=1]
+[gd_scene load_steps=18 format=1]
 
-[ext_resource path="res://media/hikarif.png" type="Texture" id=1]
+[ext_resource path="res://media/natif.png" type="Texture" id=1]
 [ext_resource path="res://font/FontCharacterName.tres" type="DynamicFont" id=2]
 [ext_resource path="res://media/pierce.png" type="Texture" id=3]
 [ext_resource path="res://font/FontCharacterTagLine.tres" type="DynamicFont" id=4]
@@ -11,11 +11,10 @@
 [ext_resource path="res://media/purse.png" type="Texture" id=9]
 [ext_resource path="res://font/FontCharacterStatHeader.tres" type="DynamicFont" id=10]
 [ext_resource path="res://font/FontCharacterNumber.tres" type="DynamicFont" id=11]
-[ext_resource path="res://media/thermal.png" type="Texture" id=12]
-[ext_resource path="res://media/hikariab1.png" type="Texture" id=13]
-[ext_resource path="res://media/hikariab2.png" type="Texture" id=14]
-[ext_resource path="res://media/hikariab3.png" type="Texture" id=15]
-[ext_resource path="res://media/hikariab4.png" type="Texture" id=16]
+[ext_resource path="res://media/hikariab1.png" type="Texture" id=12]
+[ext_resource path="res://media/hikariab2.png" type="Texture" id=13]
+[ext_resource path="res://media/hikariab3.png" type="Texture" id=14]
+[ext_resource path="res://media/hikariab4.png" type="Texture" id=15]
 
 [sub_resource type="CanvasItemShader" id=1]
 
@@ -168,7 +167,6 @@ __meta__ = {
 
 [node name="Image" type="Control" parent="."]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -262,7 +260,7 @@ margin/right = 0.0
 margin/bottom = 0.0
 custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Hikari"
+text = "Nati"
 align = 1
 valign = 1
 clip_text = true
@@ -344,7 +342,7 @@ margin/right = 291.0
 margin/bottom = -52.0
 custom_fonts/font = ExtResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Undercover Support"
+text = "Secret Society Recruit"
 align = 1
 valign = 1
 percent_visible = 1.0
@@ -380,7 +378,7 @@ margin/right = 111.0
 margin/bottom = 54.0
 custom_fonts/font = ExtResource( 6 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "80"
+text = "100"
 align = 1
 valign = 1
 clip_text = true
@@ -417,7 +415,7 @@ margin/right = 202.0
 margin/bottom = 55.0
 custom_fonts/font = ExtResource( 6 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "1/2"
+text = "1"
 align = 1
 valign = 1
 clip_text = true
@@ -454,7 +452,7 @@ margin/right = 286.0
 margin/bottom = 54.0
 custom_fonts/font = ExtResource( 6 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "1"
+text = "2"
 align = 1
 valign = 1
 clip_text = true
@@ -641,7 +639,7 @@ margin/right = 300.0
 margin/bottom = 43.0
 custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "12 / 6"
+text = "16"
 align = 2
 valign = 1
 clip_text = true
@@ -666,6 +664,7 @@ stretch_mode = 0
 
 [node name="Type1" type="TextureFrame" parent="Foreground/Container/AttackFrame"]
 
+visibility/visible = false
 rect/rotation = 45.0
 rect/scale = Vector2( 0.4, 0.4 )
 focus/ignore_mouse = true
@@ -729,7 +728,7 @@ margin/right = 299.0
 margin/bottom = 44.0
 custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "5"
+text = "6"
 align = 2
 valign = 1
 clip_text = true
@@ -749,7 +748,7 @@ margin/left = -9.0
 margin/top = 16.0
 margin/right = 91.0
 margin/bottom = 116.0
-texture = ExtResource( 12 )
+texture = ExtResource( 3 )
 stretch_mode = 0
 
 [node name="AbilitiesFrame" type="ColorFrame" parent="Foreground/Container"]
@@ -800,7 +799,7 @@ margin/left = 31.0
 margin/top = 1.0
 margin/right = 101.0
 margin/bottom = 71.0
-texture = ExtResource( 13 )
+texture = ExtResource( 12 )
 stretch_mode = 0
 
 [node name="ab2" type="TextureFrame" parent="Foreground/Container/AbilitiesFrame"]
@@ -813,7 +812,7 @@ margin/left = 105.0
 margin/top = 1.0
 margin/right = 175.0
 margin/bottom = 71.0
-texture = ExtResource( 14 )
+texture = ExtResource( 13 )
 stretch_mode = 0
 
 [node name="ab3" type="TextureFrame" parent="Foreground/Container/AbilitiesFrame"]
@@ -826,7 +825,7 @@ margin/left = 178.0
 margin/top = 1.0
 margin/right = 248.0
 margin/bottom = 71.0
-texture = ExtResource( 15 )
+texture = ExtResource( 14 )
 stretch_mode = 0
 
 [node name="ab4" type="TextureFrame" parent="Foreground/Container/AbilitiesFrame"]
@@ -839,7 +838,7 @@ margin/left = 251.0
 margin/top = 1.0
 margin/right = 321.0
 margin/bottom = 71.0
-texture = ExtResource( 16 )
+texture = ExtResource( 15 )
 stretch_mode = 0
 
 [node name="ab1-frame" type="ColorFrame" parent="Foreground/Container/AbilitiesFrame"]

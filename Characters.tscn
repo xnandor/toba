@@ -26,7 +26,6 @@
 [ext_resource path="res://media/javalinp.png" type="Texture" id=24]
 [ext_resource path="res://media/javalinf.png" type="Texture" id=25]
 
-
 [node name="Characters" type="Node"]
 
 [node name="DocWild" parent="." instance=ExtResource( 1 )]
@@ -117,9 +116,9 @@ attackTwoDmg = 0
 defence = 6
 defenceTypes = 1
 
-[node name="Kay9" parent="." instance=ExtResource( 1 )]
+[node name="K9" parent="." instance=ExtResource( 1 )]
 
-name = "Kay"
+name = "K9"
 portrait = ExtResource( 14 )
 fullbody = ExtResource( 15 )
 hp = 110
@@ -127,9 +126,9 @@ primaryTypes = 8
 attackOneTypes = 8
 attackTwoRange = 0
 attackTwoDmg = 0
-defence = 25
+defence = 12
 defenceTypes = 1
-move = 1
+move = 3
 
 [node name="TheCell" parent="." instance=ExtResource( 1 )]
 
@@ -142,7 +141,7 @@ attackOneDmg = 15
 attackOneTypes = 4
 attackTwoRange = 0
 attackTwoDmg = 0
-defence = 12
+defence = 15
 defenceTypes = 2
 
 [node name="Reaver" parent="." instance=ExtResource( 1 )]
@@ -150,14 +149,14 @@ defenceTypes = 2
 name = "Reaver"
 portrait = ExtResource( 18 )
 fullbody = ExtResource( 19 )
-hp = 130
+hp = 120
 primaryTypes = 12
 attackOneRange = 2
-attackOneDmg = 13
-attackOneTypes = 12
+attackOneDmg = 12
+attackOneTypes = 4
 attackTwoRange = 0
 attackTwoDmg = 0
-defence = 5
+defence = 8
 defenceTypes = 16
 
 [node name="KThxBye" parent="." instance=ExtResource( 1 )]

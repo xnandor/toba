@@ -1,10 +1,10 @@
 [gd_resource type="DynamicFont" load_steps=2 format=1]
 
-[ext_resource path="res://font/VeraMoBd.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://font/VeraMono.ttf" type="DynamicFontData" id=1]
 
 [resource]
 
-font/size = 23
+font/size = 39
 font/use_mipmaps = false
 font/use_filter = true
 font/font = ExtResource( 1 )
