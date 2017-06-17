@@ -1,6 +1,6 @@
 [gd_scene load_steps=26 format=1]
 
-[ext_resource path="res://SceneCharacter.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://media/docwildp.png" type="Texture" id=2]
 [ext_resource path="res://media/docwildf.png" type="Texture" id=3]
 [ext_resource path="res://media/bernardp.png" type="Texture" id=4]
@@ -25,6 +25,7 @@
 [ext_resource path="res://media/prophetf.png" type="Texture" id=23]
 [ext_resource path="res://media/javalinp.png" type="Texture" id=24]
 [ext_resource path="res://media/javalinf.png" type="Texture" id=25]
+
 
 [node name="Characters" type="Node"]
 
@@ -61,6 +62,8 @@ move = 4
 [node name="Hikari" parent="." instance=ExtResource( 1 )]
 
 name = "Hikari"
+description = "Undercover Mole"
+backstory = "Hikari has worked undercover in Japan as a north korean spy."
 portrait = ExtResource( 6 )
 fullbody = ExtResource( 7 )
 hp = 80
