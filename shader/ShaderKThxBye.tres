@@ -1,0 +1,84 @@
+[gd_resource type="CanvasItemMaterial" load_steps=2 format=1]
+
+[sub_resource type="CanvasItemShader" id=1]
+
+_code = {
+"fragment": "float t = TIME*6;
+float u = 1.3*UV.x - 0.15;
+float v = 1.3*UV.y - 0.15;
+vec2 NUV = vec2(u, v);
+float edgeAlpha = 1.0;
+if (NUV.x < 0 || NUV.x > 1 || NUV.y < 0 || NUV.y > 1) {
+	edgeAlpha = 0.0;
+}
+color fragColor = tex(TEXTURE, NUV);
+fragColor.w = edgeAlpha;
+
+vec3 color1 = vec3(0.3+sin(t/5.0), 0.1 + cos(t/7.0), 0.3 + cos(t/2.0));
+// Scale
+NUV = vec2(NUV.x*10.0, NUV.y*10.0);
+// Tile the space
+
+vec2 random2( vec2 p ) {
+	float v1 = dot(p,vec2(127.1,311.7));
+	vec2 d1 = vec2(v1, v1);
+	float v2 = dot(p,vec2(269.5,183.3));
+	vec2 d2 = vec2(v1, v2);
+	vec2 s = vec2(sin(d2.x), sin(d2.y));
+	vec2 f = fract(s)*43758.5453;
+    return f;
+}
+
+float getDist(float m_dist, float x, float y, vec2 NUV, float t) {
+	vec2 i_st = floor(NUV);
+	vec2 f_st = fract(NUV);
+    // Neighbor place in the grid
+    vec2 neighbor = vec2(float(x),float(y));
+    // Random position from current + neighbor place in the grid
+	vec2 p = i_st + neighbor;
+	vec2 point = random2(p);
+	// Animate the point
+	vec2 s = vec2(sin(t + 6.2831*point.x), sin(t + 6.2831*point.y));
+    point = vec2(0.5, 0.5) + 0.5*s;
+	// Vector between the pixel and the point
+    vec2 diff = neighbor + point;
+    // Distance to the point
+    float dist = length(diff);
+    // Keep the closer distance
+    m_dist = min(m_dist, dist);
+	return m_dist;
+}
+// Draw the min distance (distance field)
+float m_dist = 1.0;
+m_dist = getDist(m_dist, -1, -1, NUV, t);
+m_dist = getDist(m_dist, -1, 0, NUV, t);
+m_dist = getDist(m_dist, -1, 1, NUV, t);
+m_dist = getDist(m_dist, 0, -1, NUV, t);
+m_dist = getDist(m_dist, 0, 0, NUV, t);
+m_dist = getDist(m_dist, 0, 1, NUV, t);
+m_dist = getDist(m_dist, 1, -1, NUV, t);
+m_dist = getDist(m_dist, 1, 0, NUV, t);
+m_dist = getDist(m_dist, 1, 1, NUV, t);
+float ca = 0.1;
+color1 = ca*color1 + ca*vec3(m_dist, m_dist, m_dist);
+vec4 c = vec4(color1,fragColor.w);
+
+float lum = fragColor.x*0.2126 + fragColor.y*0.7152 + fragColor.z*0.0722;
+vec4 light = vec4(lum); light.w = fragColor.w;
+vec4 normalizedColor = normalize(fragColor);
+float a = 0.005;
+fragColor = tex(TEXTURE, vec2(u+a*c.x, v+a*c.y));
+fragColor.w = edgeAlpha;
+COLOR = fragColor+c;",
+"fragment_ofs": 0,
+"light": "",
+"light_ofs": 0,
+"vertex": "",
+"vertex_ofs": 0
+}
+
+[resource]
+
+shader/shader = SubResource( 1 )
+shader/shading_mode = 0
+
