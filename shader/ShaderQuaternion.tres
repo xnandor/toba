@@ -1,0 +1,109 @@
+[gd_resource type="CanvasItemMaterial" load_steps=4 format=1]
+
+[ext_resource path="res://media/quaternionfglow1.png" type="Texture" id=1]
+[ext_resource path="res://media/quaternionfglow2.png" type="Texture" id=2]
+
+[sub_resource type="CanvasItemShader" id=1]
+
+_code = {
+"fragment": "uniform texture glow1;
+uniform texture glow2;
+
+float t = TIME*6;
+float u = 1.3*UV.x - 0.15;
+float v = 1.3*UV.y - 0.15;
+vec2 NUV = vec2(u, v);
+float edgeAlpha = 1.0;
+if (NUV.x < 0 || NUV.x > 1 || NUV.y < 0 || NUV.y > 1) {
+	edgeAlpha = 0.0;
+}
+color fragColor = tex(TEXTURE, NUV);
+
+vec2 rotate(vec2 v, float alpha) {
+	float vx = v.x*cos(alpha)-v.y*sin(alpha);
+	float vy = v.x*sin(alpha)+v.y*cos(alpha);
+	v.x = vx;
+	v.y = vy;
+	return v;
+}
+float F(vec2 p, float s) {
+	float x = abs(p.x);
+    float y = abs(p.y);
+    x *= s;
+    y *= s;
+    float ScaleX = (1.0 - sqrt(abs(1.0 - x)))/(x);
+    float ScaleY = (1.0 - sqrt(abs(1.0 - y)))/(y);
+    float brightness = 1.1;
+    return ScaleX * ScaleY * brightness;
+}
+float getSample(vec2 p, float i) {
+	return F(rotate(p,(i+1.0)*TIME/10.0), (i*(sin(TIME/2.0)/5.0+0.5)+1.0));
+}
+
+// RADIAL LIGHT
+vec2 uv = NUV;
+float aspect = 4/3;
+uv.x = uv.x * aspect;
+vec2 center = vec2(0.23, 0.95);
+vec2 p = uv - vec2(center.x * aspect, center.y);
+vec3 col = vec3(0.0, 0.0, 0.0);
+float scale = 0.0;
+float i = 0;
+scale += getSample(p, i); i+=1;
+scale += getSample(p, i); i+=1;
+scale += getSample(p, i); i+=1;
+scale += getSample(p, i); i+=1;
+scale += getSample(p, i); i+=1;
+scale += getSample(p, i); i+=1;
+scale += getSample(p, i); i+=1;
+scale += getSample(p, i); i+=1;
+scale += getSample(p, i); i+=1;
+scale += getSample(p, i); i+=1;
+scale += getSample(p, i); i+=1;
+scale += getSample(p, i); i+=1;
+scale += getSample(p, i); i+=1;
+scale += getSample(p, i); i+=1;
+scale += getSample(p, i); i+=1;
+scale += getSample(p, i); i+=1;
+scale += getSample(p, i); i+=1;
+scale += getSample(p, i); i+=1;
+scale += getSample(p, i); i+=1;
+scale += getSample(p, i); i+=1;
+vec3 Color = vec3(0.0, 0.4, 1.0);
+col = Color * scale / 8.0;
+color fade = vec4(col, edgeAlpha);
+color text = tex(TEXTURE, NUV);
+text.w = edgeAlpha;
+fragColor = fade+text;
+
+// GLOW
+vec4 g1 = tex(glow1, NUV);
+g1 = vec4(1.0, 0.0, 0.0, g1.x*0.2*sin(8*TIME));
+fragColor += g1*g1.w;
+
+float amp1 = sin(20*NUV.y+3*TIME)*sin(100*NUV.y-1*TIME);
+float amp2 = sin(24*NUV.y+4*TIME)*sin(120*NUV.y-1*TIME);
+
+float goffset = 0.05;
+vec4 g2a = tex(glow2, vec2(NUV.x-goffset, NUV.y));
+vec4 g2b = tex(glow2, vec2(NUV.x+goffset, NUV.y));
+vec4 g2c = tex(glow2, vec2(NUV.x-2*goffset, NUV.y));
+vec4 g2d = tex(glow2, vec2(NUV.x+2*goffset, NUV.y));
+vec4 g2 = vec4(1.0, 0.0, 0.0, g2a.x+g2b.x+g2c.x+g2d.x);
+fragColor += g2*(g2.w*amp1*amp2);
+
+COLOR = fragColor;",
+"fragment_ofs": 0,
+"light": "",
+"light_ofs": 0,
+"vertex": "",
+"vertex_ofs": 0
+}
+
+[resource]
+
+shader/shader = SubResource( 1 )
+shader/shading_mode = 0
+shader_param/glow1 = ExtResource( 1 )
+shader_param/glow2 = ExtResource( 2 )
+
