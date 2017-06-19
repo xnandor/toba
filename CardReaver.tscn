@@ -1,106 +1,23 @@
-[gd_scene load_steps=20 format=1]
+[gd_scene load_steps=19 format=1]
 
-[ext_resource path="res://media/reaverf.png" type="Texture" id=1]
-[ext_resource path="res://font/FontCharacterName.tres" type="DynamicFont" id=2]
-[ext_resource path="res://media/thermal.png" type="Texture" id=3]
-[ext_resource path="res://media/electric.png" type="Texture" id=4]
-[ext_resource path="res://font/FontCharacterTagLine.tres" type="DynamicFont" id=5]
-[ext_resource path="res://media/hp.png" type="Texture" id=6]
-[ext_resource path="res://font/FontCharacterStat.tres" type="DynamicFont" id=7]
-[ext_resource path="res://media/range.png" type="Texture" id=8]
-[ext_resource path="res://media/move.png" type="Texture" id=9]
-[ext_resource path="res://media/purse.png" type="Texture" id=10]
-[ext_resource path="res://font/FontCharacterStatHeader.tres" type="DynamicFont" id=11]
-[ext_resource path="res://font/FontCharacterNumber.tres" type="DynamicFont" id=12]
-[ext_resource path="res://media/force.png" type="Texture" id=13]
-[ext_resource path="res://media/hikariab1.png" type="Texture" id=14]
-[ext_resource path="res://media/hikariab2.png" type="Texture" id=15]
-[ext_resource path="res://media/hikariab3.png" type="Texture" id=16]
-[ext_resource path="res://media/hikariab4.png" type="Texture" id=17]
-
-[sub_resource type="CanvasItemShader" id=1]
-
-_code = {
-"fragment": "float edge = 0.0;
-float water = 0.0;
-float a = 0.04;      // amplitude
-float n = 4.0;      // number of fans
-float o = TIME/2.0; // offset
-float alpha = 1.0;
-float u = 1.3*UV.x - 0.15;
-float v = 1.3*UV.y - 0.15;
-float direction = 1;
-float fullW = u*n+o;
-float w = mod(fullW, 2.0); // wave function
-if (w > 1.0) {
-	direction = -1;
-	w = 2.0-w;
-}
-//a = a*(0.5*sin(3*(u)*3.1459)+0.5);
-float newv = v+a*(w);
-vec2 uv = vec2(u, newv);
-vec2 wave = vec2(0.03*sin(9.2*u + TIME), 0.07*sin(22.2*u + TIME));
-if (uv.y > 1.0) {
-	if (alpha > 0.0) {
-		alpha = 0.8;
-	}
-	water = 1.0;
-}
-if ((UV.y < 1.0 && UV.y > 0.8) && (UV.x < 0.115 || UV.x > 1-0.115)) {water = 1.0;}
-if (uv.x > 1.0) {
-	alpha = 0.0;
-	if (water > 0.0) {
-		alpha = 11-10*uv.x;
-		alpha = pow(alpha, 4);
-	}
-	edge = 1.0;
-}
-if (uv.x < 0.0) {
-	alpha = 0.0;
-	if (water > 0) {
-		alpha = 1+10*uv.x;
-		alpha = pow(alpha, 4);
-	}
-	edge = 1.0;
-}
-if (water > 0) {
-	uv = vec2(wave.x+u, wave.y+(2.0-newv));
-}
-if (uv.y < 0.0) {alpha = 0.0;}
-if (uv.y > 1.0) {edge = 0.0;}
-vec4 c = tex(TEXTURE, uv); // final color pre lighting
-// Lighting
-color waterColor = color(0.5, 1.2, 1.5, 1.0);
-vec4 fluid = vec4(1.0, 1.0, 1.0, 1.0);
-if (water > 0) {
-	fluid = waterColor;
-	float center = 1-2*pow(2*UV.x-1, 2.9);
-	float strength = 32;
-	float offset = 0.77;
-	float bottom = 1-strength*pow(UV.y-offset, 1.8);
-	fluid.a = 0.5*(center+bottom);
-}
-float cornerD = w;
-float cornerShadow = 0.1*pow(cornerD, 8);
-//if (edge > 0.0) {cornerShadow = 1.0;}
-vec3 shadow = vec3(cornerShadow);
-float direct = 0.0;
-if (direction > 0) {direct = -0.1;}
-if (direction < 0) {direct = 0.1;}
-vec3 light = vec3(direct)+vec3(1.0-a);
-c = fluid*vec4((c.rgb-shadow)*(light), alpha);
-COLOR = c;",
-"fragment_ofs": 0,
-"light": "",
-"light_ofs": 0,
-"vertex": "",
-"vertex_ofs": 0
-}
-
-[sub_resource type="CanvasItemMaterial" id=2]
-
-shader/shader = SubResource( 1 )
-shader/shading_mode = 0
+[ext_resource path="res://shader/ShaderReaver.tres" type="CanvasItemMaterial" id=1]
+[ext_resource path="res://media/reaverf.png" type="Texture" id=2]
+[ext_resource path="res://font/FontCharacterName.tres" type="DynamicFont" id=3]
+[ext_resource path="res://media/thermal.png" type="Texture" id=4]
+[ext_resource path="res://media/electric.png" type="Texture" id=5]
+[ext_resource path="res://font/FontCharacterTagLine.tres" type="DynamicFont" id=6]
+[ext_resource path="res://media/hp.png" type="Texture" id=7]
+[ext_resource path="res://font/FontCharacterStat.tres" type="DynamicFont" id=8]
+[ext_resource path="res://media/range.png" type="Texture" id=9]
+[ext_resource path="res://media/move.png" type="Texture" id=10]
+[ext_resource path="res://media/purse.png" type="Texture" id=11]
+[ext_resource path="res://font/FontCharacterStatHeader.tres" type="DynamicFont" id=12]
+[ext_resource path="res://font/FontCharacterNumber.tres" type="DynamicFont" id=13]
+[ext_resource path="res://media/force.png" type="Texture" id=14]
+[ext_resource path="res://media/hikariab1.png" type="Texture" id=15]
+[ext_resource path="res://media/hikariab2.png" type="Texture" id=16]
+[ext_resource path="res://media/hikariab3.png" type="Texture" id=17]
+[ext_resource path="res://media/hikariab4.png" type="Texture" id=18]
 
 [node name="Card" type="Control"]
 
@@ -183,7 +100,7 @@ __meta__ = {
 
 [node name="TextureFrame" type="TextureFrame" parent="Image"]
 
-material/material = SubResource( 2 )
+material/material = ExtResource( 1 )
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = true
@@ -194,7 +111,7 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 stretch_mode = 0
 __meta__ = {
 "_edit_lock_": true
@@ -260,7 +177,7 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Reaver"
 align = 1
@@ -282,7 +199,7 @@ margin/left = 331.0
 margin/top = 15.0
 margin/right = 431.0
 margin/bottom = 115.0
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 stretch_mode = 0
 
 [node name="PrimaryType1" type="TextureFrame" parent="Foreground"]
@@ -296,7 +213,7 @@ margin/left = 291.0
 margin/top = 14.0
 margin/right = 391.0
 margin/bottom = 114.0
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 stretch_mode = 0
 
 [node name="Container" type="Container" parent="Foreground"]
@@ -329,7 +246,7 @@ __meta__ = {
 
 [node name="ColorFrame" type="ColorFrame" parent="Foreground/Container/MainInfo"]
 
-visibility/opacity = 0.34
+visibility/opacity = 0.52
 anchor/left = 3
 anchor/right = 3
 anchor/bottom = 1
@@ -341,7 +258,7 @@ margin/left = -57.0
 margin/top = -78.0
 margin/right = -307.0
 margin/bottom = 92.0
-color = Color( 1, 1, 1, 1 )
+color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -356,8 +273,8 @@ margin/left = 111.0
 margin/top = -77.0
 margin/right = 291.0
 margin/bottom = -52.0
-custom_fonts/font = ExtResource( 5 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 6 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Newfound Super Powers"
 align = 1
 valign = 1
@@ -376,7 +293,7 @@ margin/left = 39.0
 margin/top = 23.0
 margin/right = 139.0
 margin/bottom = 123.0
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 stretch_mode = 0
 __meta__ = {
 "_edit_lock_": true
@@ -392,7 +309,7 @@ margin/left = 67.0
 margin/top = 23.0
 margin/right = 111.0
 margin/bottom = 54.0
-custom_fonts/font = ExtResource( 7 )
+custom_fonts/font = ExtResource( 8 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "120"
 align = 1
@@ -413,7 +330,7 @@ margin/left = 125.0
 margin/top = 24.0
 margin/right = 225.0
 margin/bottom = 124.0
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 stretch_mode = 0
 __meta__ = {
 "_edit_lock_": true
@@ -429,7 +346,7 @@ margin/left = 157.0
 margin/top = 24.0
 margin/right = 202.0
 margin/bottom = 55.0
-custom_fonts/font = ExtResource( 7 )
+custom_fonts/font = ExtResource( 8 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "2"
 align = 1
@@ -450,7 +367,7 @@ margin/left = 213.0
 margin/top = 23.0
 margin/right = 313.0
 margin/bottom = 123.0
-texture = ExtResource( 9 )
+texture = ExtResource( 10 )
 stretch_mode = 0
 __meta__ = {
 "_edit_lock_": true
@@ -466,7 +383,7 @@ margin/left = 240.0
 margin/top = 23.0
 margin/right = 286.0
 margin/bottom = 54.0
-custom_fonts/font = ExtResource( 7 )
+custom_fonts/font = ExtResource( 8 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "2"
 align = 1
@@ -487,7 +404,7 @@ margin/left = 289.0
 margin/top = 22.0
 margin/right = 389.0
 margin/bottom = 122.0
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 stretch_mode = 0
 __meta__ = {
 "_edit_lock_": true
@@ -503,7 +420,7 @@ margin/left = 317.0
 margin/top = 22.0
 margin/right = 358.0
 margin/bottom = 53.0
-custom_fonts/font = ExtResource( 7 )
+custom_fonts/font = ExtResource( 8 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "2"
 align = 1
@@ -523,7 +440,7 @@ margin/left = 277.0
 margin/top = 56.0
 margin/right = 347.0
 margin/bottom = 87.0
-custom_fonts/font = ExtResource( 11 )
+custom_fonts/font = ExtResource( 12 )
 custom_colors/font_color = Color( 0.347656, 0.347656, 0.347656, 1 )
 text = "Attack"
 align = 2
@@ -561,7 +478,7 @@ margin/left = -8.0
 margin/top = -83.0
 margin/right = 62.0
 margin/bottom = -52.0
-custom_fonts/font = ExtResource( 11 )
+custom_fonts/font = ExtResource( 12 )
 custom_colors/font_color = Color( 0.347656, 0.347656, 0.347656, 1 )
 text = "HP"
 align = 1
@@ -584,7 +501,7 @@ margin/left = 171.0
 margin/top = -83.0
 margin/right = 241.0
 margin/bottom = -52.0
-custom_fonts/font = ExtResource( 11 )
+custom_fonts/font = ExtResource( 12 )
 custom_colors/font_color = Color( 0.347656, 0.347656, 0.347656, 1 )
 text = "Move"
 align = 1
@@ -607,7 +524,7 @@ margin/left = 242.0
 margin/top = -83.0
 margin/right = 312.0
 margin/bottom = -52.0
-custom_fonts/font = ExtResource( 11 )
+custom_fonts/font = ExtResource( 12 )
 custom_colors/font_color = Color( 0.347656, 0.347656, 0.347656, 1 )
 text = "Gear"
 align = 1
@@ -630,7 +547,7 @@ margin/left = 84.0
 margin/top = -83.0
 margin/right = 154.0
 margin/bottom = -52.0
-custom_fonts/font = ExtResource( 11 )
+custom_fonts/font = ExtResource( 12 )
 custom_colors/font_color = Color( 0.347656, 0.347656, 0.347656, 1 )
 text = "Range"
 align = 1
@@ -653,7 +570,7 @@ margin/left = 101.0
 margin/top = -8.0
 margin/right = 300.0
 margin/bottom = 43.0
-custom_fonts/font = ExtResource( 12 )
+custom_fonts/font = ExtResource( 13 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "12"
 align = 2
@@ -675,7 +592,7 @@ margin/left = -26.0
 margin/top = 14.0
 margin/right = 74.0
 margin/bottom = 114.0
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 stretch_mode = 0
 
 [node name="Type1" type="TextureFrame" parent="Foreground/Container/AttackFrame"]
@@ -691,7 +608,7 @@ margin/left = 13.0
 margin/top = 14.0
 margin/right = 113.0
 margin/bottom = 114.0
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 stretch_mode = 0
 
 [node name="DefenseFrame" type="ColorFrame" parent="Foreground/Container"]
@@ -719,7 +636,7 @@ margin/left = 233.0
 margin/top = -23.0
 margin/right = 303.0
 margin/bottom = 8.0
-custom_fonts/font = ExtResource( 11 )
+custom_fonts/font = ExtResource( 12 )
 custom_colors/font_color = Color( 0.386719, 0.386719, 0.386719, 1 )
 text = "Defense"
 align = 2
@@ -742,7 +659,7 @@ margin/left = 130.0
 margin/top = -10.0
 margin/right = 299.0
 margin/bottom = 44.0
-custom_fonts/font = ExtResource( 12 )
+custom_fonts/font = ExtResource( 13 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "8"
 align = 2
@@ -764,7 +681,7 @@ margin/left = -9.0
 margin/top = 16.0
 margin/right = 91.0
 margin/bottom = 116.0
-texture = ExtResource( 13 )
+texture = ExtResource( 14 )
 stretch_mode = 0
 
 [node name="AbilitiesFrame" type="ColorFrame" parent="Foreground/Container"]
@@ -792,7 +709,7 @@ margin/left = 127.0
 margin/top = -25.0
 margin/right = 229.0
 margin/bottom = 6.0
-custom_fonts/font = ExtResource( 11 )
+custom_fonts/font = ExtResource( 12 )
 custom_colors/font_color = Color( 0.347656, 0.347656, 0.347656, 1 )
 text = "Abilities"
 align = 1
@@ -815,7 +732,7 @@ margin/left = 31.0
 margin/top = 1.0
 margin/right = 101.0
 margin/bottom = 71.0
-texture = ExtResource( 14 )
+texture = ExtResource( 15 )
 stretch_mode = 0
 
 [node name="ab2" type="TextureFrame" parent="Foreground/Container/AbilitiesFrame"]
@@ -828,7 +745,7 @@ margin/left = 105.0
 margin/top = 1.0
 margin/right = 175.0
 margin/bottom = 71.0
-texture = ExtResource( 15 )
+texture = ExtResource( 16 )
 stretch_mode = 0
 
 [node name="ab3" type="TextureFrame" parent="Foreground/Container/AbilitiesFrame"]
@@ -841,7 +758,7 @@ margin/left = 178.0
 margin/top = 1.0
 margin/right = 248.0
 margin/bottom = 71.0
-texture = ExtResource( 16 )
+texture = ExtResource( 17 )
 stretch_mode = 0
 
 [node name="ab4" type="TextureFrame" parent="Foreground/Container/AbilitiesFrame"]
@@ -854,7 +771,7 @@ margin/left = 251.0
 margin/top = 1.0
 margin/right = 321.0
 margin/bottom = 71.0
-texture = ExtResource( 17 )
+texture = ExtResource( 18 )
 stretch_mode = 0
 
 [node name="ab1-frame" type="ColorFrame" parent="Foreground/Container/AbilitiesFrame"]

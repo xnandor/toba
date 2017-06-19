@@ -1,0 +1,82 @@
+[gd_resource type="CanvasItemMaterial" load_steps=2 format=1]
+
+[sub_resource type="CanvasItemShader" id=1]
+
+_code = {
+"fragment": "
+float iGlobalTime = TIME/5;
+float u = 1.3*UV.x - 0.15;
+float v = 1.3*UV.y - 0.15;
+vec2 NUV = vec2(u, v);
+float edgeAlpha = 1.0;
+if (NUV.x < 0 || NUV.x > 1 || NUV.y < 0 || NUV.y > 1) {
+	edgeAlpha = 0.0;
+}
+vec2 iResolution = vec2(400, 300);
+color fragColor = tex(TEXTURE, NUV);
+fragColor.w = edgeAlpha;
+vec2 fragCoord = vec2(iResolution.x*NUV.x, iResolution.y*NUV.y);
+
+float blob(float x,float y,float fx,float fy){
+	float speed=2.0;
+	float iGlobalTime = TIME;
+	float xx = x+sin(iGlobalTime*fx/speed)*0.7;
+	float yy = y+cos(iGlobalTime*fy/speed)*0.7;
+	return 20.0/sqrt(xx*xx+yy*yy);
+}
+
+vec2 position = vec2(fragCoord.x/iResolution.x, fragCoord.y/iResolution.y) - vec2(0.5);
+float x = position.x*2.0;
+float y = position.y*2.0;
+float a = blob(x,y,3.3,3.2) + blob(x,y,3.9,3.0);
+float b = blob(x,y,3.2,2.9) + blob(x,y,2.7,2.7);
+float c = blob(x,y,2.4,3.3) + blob(x,y,2.8,2.3);   
+vec3 d = vec3(a,b,c)/60.0;
+   
+vec4 lights = 0.5*vec4(d.x,d.y,d.z,edgeAlpha);
+
+vec4 blend(vec4 c1, vec4 c2) {
+	vec4 one = vec4(1);
+	vec4 half = vec4(0.5);
+	return 0.6*min(c1, c2)*c1+0.9*c1;
+	//return 0.9*(half-2*(c1-half)*(c2-half))+c1;
+}
+
+vec4 wave(vec2 uv, float i) {
+	float time = 0.2*TIME;
+	vec3 wave_color = vec3(0.0);
+	float wave_width = 200.0;
+	uv  = vec2(-3.0, -3.0) + 3.0 * uv;
+	uv.y += 0.0;
+	uv.y += i*0.18*(0.2+(0.5*sin(time*1.6) * 0.5*sin(uv.x + i/2.0 + 8.0 *time) ));
+	uv.x += 2.0* sin(time*0.7);
+	wave_width = abs( 1/(200.0*abs((cos(time)+2.2)) * (uv.y)));
+	wave_color = vec3(wave_width *( 0.4+((i+1.0)/18.0)), wave_width * (i / 9.0), wave_width * ((i+1.0)/ 8.0) * 1.9);
+	vec4 laser = vec4(wave_color, wave_color.x);
+	return laser;
+}
+color laser = wave(NUV, 3);
+laser = laser+wave(NUV, 4);
+laser = laser+wave(NUV, 5);
+laser = laser+wave(NUV, 6);
+laser = laser+wave(NUV, 7);
+laser = laser+wave(NUV, 8);
+laser = laser+wave(NUV, 9);
+laser = laser+wave(NUV, 10);
+laser = laser+wave(NUV, 11);
+laser = laser+wave(NUV, 12);
+laser.w = edgeAlpha;
+
+COLOR = laser+blend(fragColor, lights);",
+"fragment_ofs": 0,
+"light": "",
+"light_ofs": 0,
+"vertex": "",
+"vertex_ofs": 0
+}
+
+[resource]
+
+shader/shader = SubResource( 1 )
+shader/shading_mode = 0
+
