@@ -1,0 +1,33 @@
+[gd_resource type="CanvasItemMaterial" load_steps=2 format=1]
+
+[sub_resource type="CanvasItemShader" id=1]
+
+_code = {
+"fragment": "uniform texture mask;
+
+float iGlobalTime = TIME/5;
+float u = 1.3*UV.x - 0.15;
+float v = 1.3*UV.y - 0.15;
+vec2 NUV = vec2(u, v);
+float edgeAlpha = 1.0;
+if (NUV.x < 0 || NUV.x > 1 || NUV.y < 0 || NUV.y > 1) {
+	edgeAlpha = 0.0;
+}
+vec2 iResolution = vec2(400, 300);
+color fragColor = tex(TEXTURE, NUV);
+fragColor.w = edgeAlpha;
+vec2 fragCoord = vec2(iResolution.x*NUV.x, iResolution.y*NUV.y);
+
+COLOR = fragColor;",
+"fragment_ofs": 0,
+"light": "",
+"light_ofs": 0,
+"vertex": "",
+"vertex_ofs": 0
+}
+
+[resource]
+
+shader/shader = SubResource( 1 )
+shader/shading_mode = 0
+
