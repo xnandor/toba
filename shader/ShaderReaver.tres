@@ -80,13 +80,13 @@ float hair(vec2 NUV, float width, float taper, float rand, vec2 p1, vec2 p2) {
 	float slope = (p2.y - p1.y)/(p2.x - p1.x);
 	float w = width * (-abs(taper)*pow((x-0.5-taper/10.0), 1.2)+1.0);
 	float wavyness = 2;
-	float amp1 = 0.02;
+	float amp1 = 0.04;
 	float amp2 = 0.01;
-	float speed1 = (rand*0.3)*10.0;
-	float speed2 = (rand*0.5)*30.0;
+	float speed1 = (rand*0.1)*10.0;
+	float speed2 = (rand*0.3)*30.0;
 	float offset = rand;
 	float harmonic1 = wavyness*1*pi*NUV.x;
-	float harmonic2 = wavyness*2*pi*NUV.x;
+	float harmonic2 = wavyness*6*pi*NUV.x;
 	y = y + amp1*sin(harmonic1 + speed1*TIME);
 	y = y + amp2*sin(harmonic2 + speed2*TIME);
 	float depth = 1*sin((1/w)*pi*(y+(w/2)) - p1.y - (1/w)*pi*slope*(x+w/2)  );
